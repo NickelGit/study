@@ -11,12 +11,14 @@ module Exercise
       end
 
       def rating(array)
-        rating_array = array.select { |film| rated_and_several_countries? film }.map { |film| film['rating_kinopoisk'].to_f }
+        uprated_films = array.select { |film| rated_and_several_countries?(film) }
+        rating_array = uprated_films.map { |film| film['rating_kinopoisk'].to_f }
         rating_array.reduce(:+).to_f / rating_array.length
       end
 
       def chars_count(films, threshold)
-        films.select { |film| film['rating_kinopoisk'].to_f > threshold }.map { |film| film['name'].count 'и' }.reduce(:+)
+        uprated_films = films.select { |film| film['rating_kinopoisk'].to_f > threshold }
+        uprated_films.map { |film| film['name'].count 'и' }.reduce(:+)
       end
     end
   end
