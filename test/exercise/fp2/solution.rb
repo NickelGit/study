@@ -14,20 +14,17 @@ module Exercise
       end
 
       # Написать свою функцию my_map
-      def my_map(array = [], &func)
-        return MyArray.new(array) if empty?
-
-        head, *rest = self
-        array << func.call(head)
-        MyArray.new(rest).my_map(array, &func)
+      def my_map(&func)
+        result_array = []
+        add_processed_el = ->(acc, element) { acc << func.call(element) }
+        MyArray.new(my_reduce(result_array, &add_processed_el))
       end
 
       # Написать свою функцию my_compact
       def my_compact
         result_array = []
-        func = ->(element) { result_array << element unless element.nil? }
-        my_each(&func)
-        MyArray.new(result_array)
+        func = ->(acc, element) { element.nil? ? acc : acc << element }
+        MyArray.new(my_reduce(result_array, &func))
       end
 
       # Написать свою функцию my_reduce
