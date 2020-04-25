@@ -10,6 +10,10 @@ module Inatra
       @routes['GET'] = { path => block }
     end
 
+    def post(path, &block)
+      @routes['POST'] = { path => block }
+    end
+
     def call(env)
       request_method = env['REQUEST_METHOD']
       path = env['PATH_INFO']
