@@ -7,11 +7,13 @@ module Inatra
     end
 
     def get(path, &block)
-      @routes['GET'] = { path => block }
+      @routes['GET'] = {} if @routes['GET'].nil?
+      @routes['GET'][path] = block
     end
 
     def post(path, &block)
-      @routes['POST'] = { path => block }
+      @routes['POST'] = {} if @routes['POST'].nil?
+      @routes['POST'][path] = block
     end
 
     def call(env)
