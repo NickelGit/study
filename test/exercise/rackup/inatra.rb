@@ -23,7 +23,7 @@ module Inatra
     private
 
     def add_route(method, path, &block)
-      @routes[method] = {} if @routes[method].nil?
+      @routes[method] ||= {}
       @routes[method][path] = block
     end
   end
