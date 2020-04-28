@@ -18,7 +18,7 @@ class RackTest < Test::Unit::TestCase
   def test_it_says_hello_world_another_path
     @browser.get '/hello/another'
     assert @browser.last_response.ok?
-    assert_equal 'Hello World', @browser.last_response.body
+    assert_equal 'Hello World AGAIN', @browser.last_response.body
   end
 
   def test_it_says_hello_world_to_post

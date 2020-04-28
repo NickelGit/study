@@ -4,7 +4,7 @@ Inatra.routes do
   end
 
   get '/hello/another' do
-    [200, {}, ['Hello World']]
+    [200, {}, ['Hello World AGAIN']]
   end
 
   post '/hello' do
